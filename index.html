@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <title>Hello, world!</title>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <meta name="description" content="" />
+  <script src="index.js" type="module"></script>
+</head>
+
+<body>
+
+  <h1>Hello, world!</h1>
+  <div id="host"></div>
+  <my-button id="my-button" label="Add Element to Catalog"> </my-button>
+
+  <my-catalog id="catalog"></my-catalog>
+</body>
+
+<script>
+    const myButton = document.getElementById("my-button");
+    const catalog = document.getElementById("catalog");
+
+    const sellItems = [
+      {name: "Taza epica", imageUrl: "taza.webp", price: "10000", discountPrice: "9000", discount: "10", rating:"5"},
+    ];
+
+    const createSellItem = ({name, imageUrl, price, discountPrice, discount, rating}) => {
+      const newElement = document.createElement('sell-item');
+      newElement.setAttribute("name", name);
+      newElement.setAttribute("imageUrl", imageUrl);
+      newElement.setAttribute("price", price);
+      newElement.setAttribute("discountPrice", discountPrice);
+      newElement.setAttribute("rating", rating);
+      newElement.appendTo("catalog");
+    }
+
+    myButton.onclick = () => {
+        console.log("Clicked");
+        createSellItem(sellItems[0]);
+    };
+</script>
+
+</html>
