@@ -84,6 +84,5 @@ export default class SellItem extends HTMLElement {
     this.$price.innerHTML = `Precio normal: ${this.price}`;
     this.$discount.innerHTML += `-${this.discount}%`;
     this.$rating.innerHTML += `${this.rating}`;
-    console.log(this.discount)
   }
 }
