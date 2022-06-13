@@ -1,26 +1,13 @@
 <html>
 <head>
-	<script type="module" src="./src/to-do-app.js"></script>
+	<script type="module" src="./src/todo-list.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
-  <to-do-app></to-do-app>
+  <todo-list titulo="Titulo desde html" prompt="Agrega algo a la lista" item1="item11" item2="item22" item3="item33"></todo-list>
 </body>
 
-<script>
-	const app = document.querySelector('to-do-app');
-	import('./src/to-do-app.js').then(() => {
-	    app.todos = [
-			{ text: 'primera', checked: false },
-			{ text: 'segunda', checked: false },
-			{ text: 'tercera', checked: false }
-			// { text: 'Setting attributes', checked: false },
-			// { text: 'Reflecting properties to attributes', checked: false },
-			// { text: 'Events', checked: false },
-			// { text: 'Wrap it up', checked: false }
-	    ];
-	});
-</script>
+<script></script>
 </html>

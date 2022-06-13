@@ -99,4 +99,4 @@ class TodoItem extends HTMLElement {
     }
 
 }
-window.customElements.define('to-do-item', TodoItem);
+window.customElements.define('todo-item', TodoItem);
