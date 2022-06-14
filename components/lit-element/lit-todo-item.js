@@ -9,7 +9,6 @@ export class LitToDoItem extends LitElement {
         };
     }
 
-
     static get styles() {
         return [litTodoItemStyle];
     }

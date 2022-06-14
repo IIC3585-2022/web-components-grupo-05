@@ -2,7 +2,7 @@ import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/li
 import { litToDoListStyle } from "../../styles/lit-todo-list.css.js";
 import './lit-todo-item.js';
 
-export class LitToDoList extends LitElement {
+export default class LitToDoList extends LitElement {
     static get properties() {
         return {
             list: {type: Array},
@@ -24,7 +24,6 @@ export class LitToDoList extends LitElement {
             this.todoItem(this.item3)
         ];
         this.todo = '';
-        
     }
 
     static get styles() {
@@ -44,7 +43,6 @@ export class LitToDoList extends LitElement {
         this.todo = '';
     }
     
-    
     handleKeyPress(e) {
         if (e.target.value !== '') {
             if (e.key === 'Enter') {
@@ -59,9 +57,7 @@ export class LitToDoList extends LitElement {
     
     // this is now being emitted back to the parent from the child component
     deleteItem(indexToDelete) {
-        console.log("list updated: ", this.list)
         this.list = this.list.filter((toDo, index) => index !== indexToDelete);
-        console.log("list updated: ", this.list)
     }
     
     render() {
@@ -92,6 +88,4 @@ export class LitToDoList extends LitElement {
             </ul>
         `;
     }
-}
-customElements.define('lit-todo-list', LitToDoList);
-
+};

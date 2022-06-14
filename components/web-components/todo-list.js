@@ -1,4 +1,4 @@
-import '../components/web-components/todo-item.js';
+import './todo-item.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -25,13 +25,10 @@ template.innerHTML = `
         <button>+</button>
     </form>
 
-    <ul id="todos" class="ul">
-       
-    </ul>
-
+    <ul id="todos" class="ul"></ul>
 `; 
 
-class TodoList extends HTMLElement {
+export default class TodoList extends HTMLElement {
     constructor() {
         super();
 
@@ -57,7 +54,6 @@ class TodoList extends HTMLElement {
             { text: this.$item1, checked: false },
             { text: this.$item2, checked: false },
             { text: this.$item3, checked: false }]
-        
     }
 
     _removeTodo(e) {
@@ -89,7 +85,6 @@ class TodoList extends HTMLElement {
 
         _todos.forEach((todo, index) => {
             let $todoItem = document.createElement('todo-item');
-
             $todoItem.setAttribute('text', todo.text);
 
             if(todo.checked) {
@@ -97,16 +92,12 @@ class TodoList extends HTMLElement {
             }
 
             $todoItem.setAttribute('index', index);
-
             $todoItem.addEventListener('onRemove', this._removeTodo.bind(this));
             $todoItem.addEventListener('onToggle', this._toggleTodo.bind(this));
 
             this.$todoList.appendChild($todoItem);
         });
     }
-
-
- 
 
     set todos(value) {
         this._todos = value;
@@ -142,29 +133,20 @@ class TodoList extends HTMLElement {
     }
 
     connectedCallback() {
-        
-        var ul = this.$ul;
-        var li1 = document.createElement('li');
-        var li2 = document.createElement('li');
-        var li3 = document.createElement('li');
-
         this.$item1 = this.item1; 
         this.$item2 = this.item2; 
         this.$item3 = this.item3; 
 
-
         this.$initialTodos = [
-             		{ text: this.$item1, checked: false },
-            		{ text: this.$item2, checked: false },
-             		{ text: this.$item3, checked: false }]
+            { text: this.$item1, checked: false },
+            { text: this.$item2, checked: false },
+            { text: this.$item3, checked: false }
+        ]
         
         this._todos = this.$initialTodos
-                     
         this._renderTodoList();        
         
         this.$prompt.placeholder = this.prompt; 
         this.$titulo.innerHTML = this.titulo; 
     }
 }
-
-window.customElements.define('todo-list', TodoList);

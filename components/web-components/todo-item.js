@@ -5,9 +5,6 @@ template.innerHTML = `
             display: block;
             font-family: sans-serif;
         }
-        .completed {
-            text-decoration: line-through;
-        }
         button {
             border: none;
             cursor: pointer;
@@ -44,7 +41,6 @@ class TodoItem extends HTMLElement {
         if(!this.hasAttribute('text')) {
             this.setAttribute('text', 'placeholder');
         }
-
         this._renderTodoItem();
     }
 
@@ -68,13 +64,10 @@ class TodoItem extends HTMLElement {
 
     _renderTodoItem() {
         if (this.hasAttribute('checked')) {
-            this.$item.classList.add('completed');
             this.$checkbox.setAttribute('checked', '');
         } else {
-            this.$item.classList.remove('completed');
             this.$checkbox.removeAttribute('checked');
         }
-        
         this.$text.innerHTML = this._text;
     }
 
@@ -97,6 +90,5 @@ class TodoItem extends HTMLElement {
             this.removeAttribute('checked');
         }
     }
-
 }
 window.customElements.define('todo-item', TodoItem);
