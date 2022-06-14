@@ -55,7 +55,7 @@ class TodoList extends HTMLElement {
         
         this.$initialTodos = [
             { text: this.$item1, checked: false },
-           { text: this.$item2, checked: false },
+            { text: this.$item2, checked: false },
             { text: this.$item3, checked: false }]
         
     }

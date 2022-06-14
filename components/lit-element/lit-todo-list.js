@@ -7,20 +7,28 @@ export class LitToDoList extends LitElement {
         return {
             list: {type: Array},
             todo: {type: String},
+            item1: {type: String},
+            item2: {type: String},
+            item3: {type: String},
+            prompt: {type: String},
+            titulo: {type: String}
         };
+    }
+
+    connectedCallback() {
+        super.connectedCallback()        
+
+        this.list = [
+            this.todoItem(this.item1),
+            this.todoItem(this.item2),
+            this.todoItem(this.item3)
+        ];
+        this.todo = '';
+        
     }
 
     static get styles() {
         return [litToDoListStyle];
-    }
-
-    constructor() {
-        super();
-        this.list = [
-            this.todoItem('clean the house'),
-            this.todoItem('buy milk')
-        ];
-        this.todo = '';
     }
 
     todoItem(todo) {
@@ -58,7 +66,7 @@ export class LitToDoList extends LitElement {
     
     render() {
         return html`
-            <h1 class='titulo'>TOTTT</h1>
+            <h1 class='titulo'>${this.titulo}</h1>
             <form id="todo-input">
                 <input 
                     class='prompt' 
@@ -66,6 +74,7 @@ export class LitToDoList extends LitElement {
                     .value=${this.todo}
                     @input=${this.handleInput}
                     @keypress=${this.handleKeyPress}
+                    placeholder=${this.prompt}
                 ></input>
                 <button @click=${this.createNewToDoItem}>+</button>
             </form>
