@@ -1,6 +1,6 @@
 # Tarea 7 - Grupo 5
 
-## Web Components.
+## Web Components
 
 ### Instrucciones para correr tarea:
 - Ingresar a un HTTP server con `python3 -m http.server`.
