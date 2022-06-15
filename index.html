@@ -15,6 +15,7 @@
   <h1>Web Components - G5! <i class="material-icons">favorite</i></h1>
   <div id="host"></div>
   <my-button id="my-button" label="Add Element to Catalog"> </my-button>
+  <!-- <my-button id="my-lit-button" label="Add Lit Element to Catalog"> </my-button> -->
 
   <my-catalog id="catalog">
   </my-catalog>
@@ -22,7 +23,9 @@
 
 <script>
     const myButton = document.getElementById("my-button");
+    const myLitButton = document.getElementById("my-lit-button");
     const catalog = document.getElementById("catalog");
+    const litCatalog = document.getElementById("lit-catalog");
     let index = 0;
 
     const setAttributes = (element, item) => {
@@ -40,15 +43,27 @@
 
     const createSellItem = (idx) => {
       const newElement = document.createElement('sell-item');
-      //const newElement = document.createElement('lit-sell-item');
       setAttributes(newElement, sellItems[idx]);
       newElement.appendTo("catalog");
       index = index + 1;
+      if (index > 3) index = 0;
     }
 
     myButton.onclick = () => {
         createSellItem(index);
     };
+
+    const createLitSellItem = (idx) => {
+      const newElement = document.createElement('lit-sell-item');
+      setAttributes(newElement, sellItems[idx]);
+      newElement.appendTo("catalog");
+      index = index + 1;
+    }
+
+    myLitButton.onclick = () => {
+        createLitSellItem(index);
+    };
+
 </script>
 
 </html>
