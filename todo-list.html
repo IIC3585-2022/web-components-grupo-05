@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <title>Web Components - G5</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <meta name="description" content="" />
+  <script src="src/index.js" type="module"></script>
+</head>
+
+<body>
+  <h1>Web Components - G5! <i class="material-icons">favorite</i></h1>
+  <div id="host">
+    <form id="form-list">
+      <label for="fname">Name:</label>
+      <input type="text" id="list-name" name="fname" value="A new list">
+      <label for="lname">Placeholder:</label>
+      <input type="text" id="list-placeholder" name="lname" value="Ingresar to do..."><br><br>
+      <label for="lname">Input 1</label>
+      <input type="text" id="in1" name="lname" value="Thing 1">
+      <label for="lname">Input 2</label>
+      <input type="text" id="in2" name="lname" value="Thing 2">
+      <label for="lname">Input 3</label>
+      <input type="text" id="in3" name="lname" value="Thing 3"><br><br>
+      <input type="radio" id="wc" name="fav_language" value="WC">
+      <label for="wc">web component</label>
+      <input type="radio" id="lit" name="fav_language" value="Lit">
+      <label for="lit">lit element</label><br><br>
+      <input class="submit" type="submit" value="Add a new To Do List"><br><br>
+    </form> 
+
+    <div id="lists-container">
+      <todo-list 
+        titulo="Web Component ToDoList" 
+        prompt="Agrega algo a tu wc-list" 
+        item1="Salir a correr" 
+        item2="Ver TV" 
+        item3="Tomar once"
+      ></todo-list>
+      <lit-todo-list 
+        titulo="Lit ToDoList" 
+        prompt="Agrega algo a tu lit-wc-list" 
+        item1="Ir a la u" 
+        item2="Salir a comer" 
+        item3="Estudiar"
+      ></lit-todo-list>
+    </div>
+  </div>
+    
+</body>
+
+<script>
+
+  document.getElementById("form-list").addEventListener("submit", event => {
+    event.preventDefault();
+    name = document.getElementById("list-name").value
+    prompt = document.getElementById("list-placeholder").value
+    item1 = document.getElementById("in1").value
+    item2 = document.getElementById("in2").value
+    item3 = document.getElementById("in3").value
+    wc = document.getElementById("wc").checked
+    lit = document.getElementById("lit").checked
+
+    if (wc) {
+      const newList = document.createElement('todo-list')
+      newList.setAttribute('titulo', name)
+      newList.setAttribute('prompt', prompt)
+      newList.setAttribute('item1', item1)
+      newList.setAttribute('item2', item2)
+      newList.setAttribute('item3', item3)
+
+      const grid = document.getElementById("lists-container").appendChild(newList)
+    } else {
+      const newList = document.createElement('lit-todo-list')
+      newList.setAttribute('titulo', name)
+      newList.setAttribute('prompt', prompt)
+      newList.setAttribute('item1', item1)
+      newList.setAttribute('item2', item2)
+      newList.setAttribute('item3', item3)
+
+      const grid = document.getElementById("lists-container").appendChild(newList)
+    }
+  })
+    
+</script>
+<style>
+  body {
+    background-color: #C7C9A0;
+
+  }
+  form {
+    margin: 0 auto;
+    width: 900px;
+    text-align: center;
+  }
+  .submit {
+    padding: 0 16px;
+    font-size: 16px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+
+    width: 50%;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #a1a1a1;
+    background: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0, 0.05), 0 2px 8px 0 rgba(161,161,161, 0.4);
+    color: #363636;
+  }
+  #lists-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+</style>
+
+</html>

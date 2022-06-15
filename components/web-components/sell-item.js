@@ -1,66 +1,9 @@
+import { sellItemStyle } from "../../styles/sell-item.css.js";
 const template = document.createElement('template');
 
 template.innerHTML = `
   <style>
-    .card {
-        margin: 10px 15px;
-        padding: 0;
-        border-radius: 16px;
-        background-color: #E52142;
-        display: flex;
-        flex-direction: column;
-        -webkit-box-shadow: 8px 8px 15px 5px rgba(0,0,0,0.5); 
-        box-shadow: 8px 8px 15px 5px rgba(0,0,0,0.5);
-        transition: transform .3s;
-        grid-row-end: span 21;
-        overflow: hidden;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-        cursor: pointer;
-    }
-
-    .image-container {
-      height: 70%;
-      width: 100%;
-      border-bottom: 1px solid black;
-    }
-
-    img {
-        max-width:100%;
-        max-height:100%;
-        height: 100%;
-        width: 100%;
-    }
-
-    h4, h5, h6 {
-      margin: 0;
-      padding: 0;
-    }
-
-    .sell-item-discount-price {
-      display: inline-block;
-    }
-
-    .sell-item-price {
-      display: inline-block;
-    }
-
-    .sell-item-price-container {
-      display: flex;
-      justify-content: space-between;
-      margin-left: 30px;
-      margin-right: 20px;
-      margin-bottom: 10px;
-    }
-
-    .sell-item-name-rating {
-      display: flex;
-      justify-content: space-between;
-      margin-left: 20px;
-      margin-right: 20px;
-    }
+    ${sellItemStyle}
   </style>
   
   <head>
@@ -68,7 +11,7 @@ template.innerHTML = `
   </head>
 
   <div class="card">
-      <div class="sell-item-discount"> </div>
+      <div class="sell-item-discount"><h4></h4></div>
       <div class="image-container">
       </div>
       <div class="sell-item-name-rating">
@@ -90,6 +33,7 @@ export default class SellItem extends HTMLElement {
     this._shadowRoot.appendChild(template.content.cloneNode(true));
 
     this.$name = this._shadowRoot.querySelector('.sell-item-name');
+    this.$discount = this._shadowRoot.querySelector('.sell-item-discount');
     this.$discountPrice = this._shadowRoot.querySelector('.sell-item-discount-price')
     this.$price = this._shadowRoot.querySelector('.sell-item-price');
     this.$imageContainer = this._shadowRoot.querySelector('.image-container');
@@ -129,12 +73,7 @@ export default class SellItem extends HTMLElement {
     return ['name', 'imageUrl', 'price', 'discountPrice', 'discount', 'rating'];
   }
   
-  attributeChangedCallback(name, oldVal, newVal) {
-    console.log("Attribute changed value");
-  }
-
   connectedCallback() {
-    console.log("Connected");
     // Anade imagen
     const imageElement = document.createElement('img');
     imageElement.setAttribute('src', this.imageUrl)
@@ -143,18 +82,7 @@ export default class SellItem extends HTMLElement {
     this.$name.innerHTML = this.name;
     this.$discountPrice.innerHTML = `$${this.discountPrice}`;
     this.$price.innerHTML = `Precio normal: ${this.price}`;
+    this.$discount.innerHTML += `-${this.discount}%`;
     this.$rating.innerHTML += `${this.rating}`;
-  }
-
-  adoptedCallback() {
-    console.log("Adopted");
-  }
-
-  disconnectedCallback() {
-    console.log("Disconnected");
-  }
-
-  render() {
-    console.log("rendering");
   }
 }

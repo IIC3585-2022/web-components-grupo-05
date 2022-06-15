@@ -8,21 +8,24 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <meta name="description" content="" />
-  <script src="index.js" type="module"></script>
+  <script src="src/index.js" type="module"></script>
 </head>
 
 <body>
-
   <h1>Web Components - G5! <i class="material-icons">favorite</i></h1>
   <div id="host"></div>
   <my-button id="my-button" label="Add Element to Catalog"> </my-button>
+  <!-- <my-button id="my-lit-button" label="Add Lit Element to Catalog"> </my-button> -->
 
-  <my-catalog id="catalog"></my-catalog>
+  <my-catalog id="catalog">
+  </my-catalog>
 </body>
 
 <script>
     const myButton = document.getElementById("my-button");
+    const myLitButton = document.getElementById("my-lit-button");
     const catalog = document.getElementById("catalog");
+    const litCatalog = document.getElementById("lit-catalog");
     let index = 0;
 
     const setAttributes = (element, item) => {
@@ -32,8 +35,10 @@
     };
 
     const sellItems = [
-      {name: "Taza epica", imageUrl: "taza.webp", price: "10000", discountPrice: "9000", discount: "10", rating:"5"},
-      {name: "Taza epica 2", imageUrl: "taza.webp", price: "10000", discountPrice: "9000", discount: "10", rating:"5"},
+      {name: "Taza epica", imageUrl: "assets/taza.webp", price: "10000", discountPrice: "9000", discount: "10", rating:"4.1"},
+      {name: "Polera anime", imageUrl: "assets/polera.webp", price: "10000", discountPrice: "8000", discount: "20", rating:"4.3"},
+      {name: "Figuras Ousama Ranking", imageUrl: "assets/figuras.jpg", price: "15000", discountPrice: "12000", discount: "20", rating:"5"},
+      {name: "Manta Bojji", imageUrl: "assets/manta.webp", price: "30000", discountPrice: "27000", discount: "10", rating:"5"},
     ];
 
     const createSellItem = (idx) => {
@@ -41,11 +46,24 @@
       setAttributes(newElement, sellItems[idx]);
       newElement.appendTo("catalog");
       index = index + 1;
+      if (index > 3) index = 0;
     }
 
     myButton.onclick = () => {
         createSellItem(index);
     };
+
+    const createLitSellItem = (idx) => {
+      const newElement = document.createElement('lit-sell-item');
+      setAttributes(newElement, sellItems[idx]);
+      newElement.appendTo("catalog");
+      index = index + 1;
+    }
+
+    myLitButton.onclick = () => {
+        createLitSellItem(index);
+    };
+
 </script>
 
 </html>
